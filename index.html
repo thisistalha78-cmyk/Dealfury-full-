@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealFury - Best Deal Finder</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">DealFury</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Landing Section -->
+    <header class="hero">
+        <div class="search-container">
+            <h1>Find the Best Deals with Magic</h1>
+            <input type="text" class="search-bar" placeholder="Search deals...">
+        </div>
+
+        <!-- Wizard Animation (Correct path) -->
+        <img src="assets/wizard.png" class="wizard-orbit" alt="Flying Wizard">
+
+        <!-- Gift Image Animation (Correct path) -->
+        <img src="assets/gift.png" class="gift-bounce" alt="Gift Boxes">
+
+    </header>
+
+<section class="deals"><h2 class="deal-title">✨ Magical Deals For You</h2><div class="deal-grid">
+
+    <div class="deal-card">
+        <img src="assets/deals/item1.png">
+        <h3>Item 1</h3>
+        <p>Exclusive magical offer.</p>
+    </div>
+    
+
+    <div class="deal-card">
+        <img src="assets/deals/item2.png">
+        <h3>Item 2</h3>
+        <p>Exclusive magical offer.</p>
+    </div>
+    
+
+    <div class="deal-card">
+        <img src="assets/deals/item3.png">
+        <h3>Item 3</h3>
+        <p>Exclusive magical offer.</p>
+    </div>
+    
+
+    <div class="deal-card">
+        <img src="assets/deals/item4.png">
+        <h3>Item 4</h3>
+        <p>Exclusive magical offer.</p>
+    </div>
+    
+
+    <div class="deal-card">
+        <img src="assets/deals/item5.png">
+        <h3>Item 5</h3>
+        <p>Exclusive magical offer.</p>
+    </div>
+    
+
+    <div class="deal-card">
+        <img src="assets/deals/item6.jpg">
+        <h3>Item 6</h3>
+        <p>Exclusive magical offer.</p>
+    </div>
+    
+
+    <div class="deal-card">
+        <img src="assets/deals/item7.png">
+        <h3>Item 7</h3>
+        <p>Exclusive magical offer.</p>
+    </div>
+    
+
+    <div class="deal-card">
+        <img src="assets/deals/item8.png">
+        <h3>Item 8</h3>
+        <p>Exclusive magical offer.</p>
+    </div>
+    
+</div><button class="all-deals">View All Deals</button></section>
+
+
+
+
+
+
+
+    <script src="js/main.js"></script>
+
+
+
+
+<div class="review-carousel">
+ <div class="review-track">
+   <div class="review">DealFury gives amazing magical discounts every day!</div>
+   <div class="review">Fast service, real offers — absolutely love it!</div>
+   <div class="review">Best place to find stylish items with magic!</div>
+   <div class="review">Trusted deals — no fake offers ever.</div>
+   <div class="review">Wonderful experience, highly recommended!</div>
+   <div class="review">Magical savings that surprise me every time!</div>
+ </div>
+</div>
+<script>
+let i=0;
+const t=document.querySelector('.review-track');
+setInterval(()=>{ i=(i+1)%6; t.style.transform="translateX(-"+(i*100)+"%)"; },3000);
+</script>
+
+<div class="reviews"><div class="track">
+<div class="rev">Amazing deals!</div>
+<div class="rev">Great quality!</div>
+<div class="rev">Fast and magical!</div>
+</div></div>
+<div class="review-section">
+    <div class="review-slider">
+        <div class="review-item">Amazing deals! Saved money instantly.</div>
+        <div class="review-item">Wonderful experience, highly recommended!</div>
+        <div class="review-item">Best discounts anywhere, DealFury is magic!</div>
+        <div class="review-item">Fast, smooth and super trustworthy.</div>
+    </div>
+</div>
+</body>
+</html>
+
