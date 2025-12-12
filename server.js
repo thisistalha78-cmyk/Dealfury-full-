@@ -39,9 +39,9 @@ ${JSON.stringify(products, null, 2)}
 
   try {
     const response = await axios.post(
-      "https://openrouter.ai/api/v1/chat/completions",   // ⭐ FIXED ENDPOINT
+      "https://openrouter.ai/api/v1/chat/completions",
       {
-        model: "deepseek/deepseek-chat",                 // ⭐ OPENROUTER MODEL
+        model: "tngtech/deepseek-r1t2-chimera:free",  // ⭐ FIXED MODEL NAME
         messages: [
           { role: "system", content: "You specialize in product comparison and shopping advice." },
           { role: "user", content: prompt }
@@ -49,10 +49,10 @@ ${JSON.stringify(products, null, 2)}
       },
       {
         headers: {
-          "Authorization": `Bearer ${DEEPSEEK_API_KEY}`, // ⭐ OpenRouter key
+          "Authorization": `Bearer ${DEEPSEEK_API_KEY}`, 
           "Content-Type": "application/json",
-          "HTTP-Referer": "https://dealfury-full-5.onrender.com", // ⭐ Required by OpenRouter
-          "X-Title": "DealFury AI"                               // ⭐ Required by OpenRouter
+          "HTTP-Referer": "https://dealfury-full-6.onrender.com", // ⭐ Must match your Render URL
+          "X-Title": "DealFury AI"
         }
       }
     );
@@ -90,3 +90,4 @@ app.get("/api/search", async (req, res) => {
 });
 
 app.listen(3000, () => console.log("Backend running on port 3000"));
+
