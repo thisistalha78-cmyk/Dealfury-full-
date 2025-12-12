@@ -1,9 +1,15 @@
+// ⭐ MUST ADD THIS FIRST (loads Render environment variables)
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const cors = require("cors");
 const axios = require("axios");
 
 app.use(cors());
+
+// Test print to verify if DeepSeek key loads correctly
+console.log("Loaded DeepSeek Key:", process.env.DEEPSEEK_API_KEY ? "OK" : "NOT FOUND");
 
 const API_KEY = "bb4940f5be015fe5b1fce30d30be4359c82105d7de6e707b17c8105c81dbcc2b";
 
@@ -12,6 +18,11 @@ const API_KEY = "bb4940f5be015fe5b1fce30d30be4359c82105d7de6e707b17c8105c81dbcc2
 // =========================
 async function deepseekRecommend(products) {
   const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
+
+  if (!DEEPSEEK_API_KEY) {
+    console.error("❌ DeepSeek API KEY NOT LOADED");
+    return "⚠️ DeepSeek API key missing.";
+  }
 
   const prompt = `
 You are an expert at comparing online products.
@@ -48,8 +59,8 @@ ${JSON.stringify(products, null, 2)}
     return response.data.choices[0].message.content;
 
   } catch (err) {
-    console.error("DeepSeek Error:", err?.response?.data || err.message);
-    return "⚠️ AI Summary unavailable.";
+    console.error("❌ DeepSeek Error:", err.response?.data || err.message);
+    return "⚠️ AI Summary unavailable (DeepSeek Error).";
   }
 }
 
@@ -72,6 +83,7 @@ app.get("/api/search", async (req, res) => {
     });
 
   } catch (err) {
+    console.error("Backend Error:", err);
     res.json({ error: "Backend error", details: err.toString() });
   }
 });
