@@ -14,13 +14,13 @@ console.log("Loaded DeepSeek Key:", process.env.DEEPSEEK_API_KEY ? "OK" : "NOT F
 const API_KEY = "bb4940f5be015fe5b1fce30d30be4359c82105d7de6e707b17c8105c81dbcc2b";
 
 // =========================
-// ⭐ ADD: DEEPSEEK FUNCTION
+// ⭐ DEEPSEEK (via OpenRouter)
 // =========================
 async function deepseekRecommend(products) {
   const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
 
   if (!DEEPSEEK_API_KEY) {
-    console.error("❌ DeepSeek API KEY NOT LOADED");
+    console.error("❌ OpenRouter API KEY NOT LOADED");
     return "⚠️ DeepSeek API key missing.";
   }
 
@@ -39,19 +39,20 @@ ${JSON.stringify(products, null, 2)}
 
   try {
     const response = await axios.post(
-      "https://api.deepseek.com/v1/chat/completions",
+      "https://openrouter.ai/api/v1/chat/completions",   // ⭐ FIXED ENDPOINT
       {
-        model: "deepseek-chat",
+        model: "deepseek/deepseek-chat",                 // ⭐ OPENROUTER MODEL
         messages: [
           { role: "system", content: "You specialize in product comparison and shopping advice." },
           { role: "user", content: prompt }
-        ],
-        temperature: 0.7
+        ]
       },
       {
         headers: {
-          "Authorization": `Bearer ${DEEPSEEK_API_KEY}`,
-          "Content-Type": "application/json"
+          "Authorization": `Bearer ${DEEPSEEK_API_KEY}`, // ⭐ OpenRouter key
+          "Content-Type": "application/json",
+          "HTTP-Referer": "https://dealfury-full-5.onrender.com", // ⭐ Required by OpenRouter
+          "X-Title": "DealFury AI"                               // ⭐ Required by OpenRouter
         }
       }
     );
@@ -65,7 +66,7 @@ ${JSON.stringify(products, null, 2)}
 }
 
 // =========================
-// ⭐ MODIFY ROUTE to include AI summary
+// ⭐ ROUTE WITH AI SUMMARY
 // =========================
 app.get("/api/search", async (req, res) => {
   const q = req.query.q || "";
@@ -74,12 +75,12 @@ app.get("/api/search", async (req, res) => {
     const response = await axios.get(url);
     const products = response.data.shopping_results || [];
 
-    // ⭐ USE DeepSeek to generate summary
+    // ⭐ USE DeepSeek (OpenRouter) to generate summary
     const summary = await deepseekRecommend(products);
 
-    res.json({ 
+    res.json({
       deals: products,
-      summary: summary  // ⭐ added AI summary
+      summary: summary
     });
 
   } catch (err) {
